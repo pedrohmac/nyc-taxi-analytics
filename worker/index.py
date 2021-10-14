@@ -24,12 +24,15 @@ def main():
 
     print('Os 3 maiores vendors em quantidade total de dinheiro arrecadado são:')
     plot_top_vendors(queries.top_vendors)
+    print('PNG gerado')
 
     print('Distribuição mensal, nos 4 anos, de corridas pagas em dinheiro:')
     money_paid_trips(queries.money_paid)
+    print('PNG gerado')
 
     print('Quantidade de gorjetas por dia nos últimos 3 meses de 2012:')
     daily_tips(queries.tips_per_day)
+    print('PNG gerado')
 
     return True
 

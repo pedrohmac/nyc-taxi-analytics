@@ -37,6 +37,9 @@ services:
       - postgres
     networks:
       - analytics
+    volumes:
+      - $PWD:/worker/graphs
 networks: 
   analytics:
     driver: bridge
+    

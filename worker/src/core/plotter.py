@@ -19,10 +19,6 @@ def plot_top_vendors(query):
     names = list(handler.keys())
     values = list(handler.values())
 
-    # response = zip(names, values)
-    # for i in response:
-    #     print(i)
-
     width = 0.95
     fig, ax = plt.subplots()
     rects = ax.bar(names, values, width)

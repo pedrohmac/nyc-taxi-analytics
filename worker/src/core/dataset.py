@@ -32,7 +32,6 @@ def load_vendor(table, columns, filepath):
     print('data extracted')
 
     query_handler = queries.insert_statement.format(table, csv_data[0])
-    print(query_handler)
     execute_values(cursor, query_handler, csv_data[1])
     print(f'insert successful: {table}')
     return connection.commit()

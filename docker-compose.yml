@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database:/var/lib/postgresql/data 
+    networks:
+      - analytics
+      
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "postgres@postgres.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres
+    networks:
+      - analytics
+  worker:
+    image: worker
+    build:
+      context: worker/.
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_DATABASE: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    depends_on: 
+      - postgres
+    networks:
+      - analytics
+    volumes:
+      - $PWD:/worker/graphs
+networks: 
+  analytics:
+    driver: bridge
+    
